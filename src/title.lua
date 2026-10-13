@@ -5,6 +5,10 @@ Title.entities = {
         image = love.graphics.newImage('assets/title_bg.png'),
         position = { x = 0, y = 0 },
     }),
+    Entity:new({
+        image = love.graphics.newImage('assets/title_text.png'),
+        position = { x = 0, y = 0 },
+    }),
 }
 
 return Title

@@ -1,4 +1,5 @@
 function love.load()
+    love.graphics.setDefaultFilter("nearest", "nearest")
     System = require("lib.system")
     Scene = require("src.scene")
     Entity = require("src.entity")
