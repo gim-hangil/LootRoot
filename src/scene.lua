@@ -21,7 +21,6 @@ function Scene:update(dt)
 end
 
 function Scene:draw()
-    love.graphics.clear(Utils.Colors.WHITE)
     for _, entity in ipairs(self.entities) do
         BaseSystem.drawSprite(entity)
     end

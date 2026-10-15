@@ -14,5 +14,6 @@ function love.update(dt)
 end
 
 function love.draw()
+    love.graphics.clear(Utils.Colors.LIGHT_GRAY)
     Title:draw()
 end
