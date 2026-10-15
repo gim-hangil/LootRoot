@@ -9,14 +9,14 @@ Title.entities = {
         text = 'Start',
         color = Utils.Colors.WHITE,
         font = love.graphics.newFont('assets/Yesterday 10.ttf', 16),
-        position = { x = 0, y = 48 },
+        position = { x = 0, y = 44 },
         wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
     }),
     Entity:new({
         text = 'Credit',
         color = Utils.Colors.WHITE,
         font = love.graphics.newFont('assets/Yesterday 10.ttf', 16),
-        position = { x = 0, y = 64 },
+        position = { x = 0, y = 60 },
         wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
     }),
 }
