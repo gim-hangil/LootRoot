@@ -2,11 +2,7 @@
 local Title = Scene:new()
 Title.entities = {
     Entity:new({
-        image = love.graphics.newImage('assets/title_bg.png'),
-        position = { x = 0, y = 0 },
-    }),
-    Entity:new({
-        image = love.graphics.newImage('assets/title_text.png'),
+        image = love.graphics.newImage('assets/title.png'),
         position = { x = 0, y = 0 },
     }),
 }

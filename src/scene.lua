@@ -20,18 +20,10 @@ end
 function Scene:update(dt)
 end
 
--- Draw entity with image and position on the screen.
----@type fun(entity: Entity): nil
-local drawSprite = System(
-    { 'image', 'position' },
-    function(image, position)
-        love.graphics.draw(image, position.x, position.y, 0, LOOT_ROOT_SCALE)
-    end
-)
-
 function Scene:draw()
+    love.graphics.clear(Utils.Colors.WHITE)
     for _, entity in ipairs(self.entities) do
-        drawSprite(entity)
+        BaseSystem.drawSprite(entity)
     end
 end
 
