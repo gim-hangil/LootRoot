@@ -5,6 +5,27 @@ Title.entities = {
         image = love.graphics.newImage('assets/title.png'),
         position = { x = 0, y = 0 },
     }),
+    Entity:new({
+        text = 'Start',
+        color = Utils.Colors.WHITE,
+        font = love.graphics.newFont('assets/Yesterday 10.ttf', 16),
+        position = { x = 0, y = 48 },
+        wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
+    }),
+    Entity:new({
+        text = 'Credit',
+        color = Utils.Colors.WHITE,
+        font = love.graphics.newFont('assets/Yesterday 10.ttf', 16),
+        position = { x = 0, y = 64 },
+        wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
+    }),
 }
+
+function Title:draw()
+    Scene.draw(self)
+    for _, entity in ipairs(self.entities) do
+        BaseSystem.renderText(entity)
+    end
+end
 
 return Title
