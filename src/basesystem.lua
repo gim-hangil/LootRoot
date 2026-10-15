@@ -7,13 +7,14 @@ local drawSprite = System(
     end
 )
 
-local DEFAULT_FONT = love.graphics.newFont('assets/BoldPixels.ttf', 16)
+local DEFAULT_COLOR = Utils.Colors.WHITE
+local DEFAULT_FONT = love.graphics.newFont('assets/Yesterday 10.ttf', 16)
 local renderText = System(
-    { 'text', 'color', 'position', '?font', '?wrap' },
-    function(text, color, position, font, wrap)
+    { 'text', 'position', '?color', '?font', '?wrap' },
+    function(text, position, color, font, wrap)
         local current_color = { love.graphics.getColor() }
+        love.graphics.setColor(color or DEFAULT_COLOR)
         love.graphics.setFont(font or DEFAULT_FONT)
-        love.graphics.setColor(color)
         love.graphics.printf(text, position.x, position.y, wrap.limit, wrap.align)
         love.graphics.setColor(current_color)
     end

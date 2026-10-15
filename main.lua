@@ -3,8 +3,8 @@ function love.load()
     System = require("lib.system")
     Scene = require("src.scene")
     Entity = require("src.entity")
-    BaseSystem = require("src.basesystem")
     Utils = require("src.utils")
+    BaseSystem = require("src.basesystem")
     Title = require("src.title")
 end
 
