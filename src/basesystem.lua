@@ -3,7 +3,7 @@
 local drawSprite = System(
     { 'image', 'position' },
     function(image, position)
-        love.graphics.draw(image, position.x, position.y)
+        love.graphics.draw(image, math.floor(position.x), math.floor(position.y))
     end
 )
 
@@ -20,7 +20,7 @@ local renderText = System(
         local current_color = { love.graphics.getColor() }
         love.graphics.setColor(color)
         love.graphics.setFont(font)
-        love.graphics.printf(text, position.x, position.y, wrap.limit, wrap.align)
+        love.graphics.printf(text, math.floor(position.x), math.floor(position.y), wrap.limit, wrap.align)
         love.graphics.setColor(current_color)
     end
 )
@@ -44,7 +44,7 @@ local renderButtons = System(
             local y_offset = (i - 1) * (font:getHeight() + 4)
             local label_color = value == i and active_color or color
             love.graphics.setColor(label_color)
-            love.graphics.printf(label, position.x, position.y + y_offset, wrap.limit, wrap.align)
+            love.graphics.printf(label, math.floor(position.x), math.floor(position.y + y_offset), wrap.limit, wrap.align)
             love.graphics.setColor(current_color)
         end
     end
