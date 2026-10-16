@@ -1,32 +1,50 @@
 ---@class Title: Scene
 local Title = Scene:new()
 Title.entities = {
-    Entity:new({
+    title_loot = Entity:new({
         text = 'Loot',
         font = love.graphics.newFont('assets/More 15.ttf', 32),
         position = { x = 0, y = 16 },
         color = Utils.Colors.RED,
         wrap = { limit = LOOT_ROOT_WIDTH / 2, align = 'right' },
     }),
-    Entity:new({
+    title_root = Entity:new({
         text = 'Root',
         font = love.graphics.newFont('assets/More 15.ttf', 32),
         position = { x = LOOT_ROOT_WIDTH / 2, y = 16 },
         wrap = { limit = LOOT_ROOT_WIDTH / 2, align = 'left' },
     }),
-    Entity:new({
+    buttons = Entity:new({
         labels = { 'Start', 'How to', 'Credits' },
-        position = { x = 0, y = 64 },
+        position = { x = 0, y = 56 },
         value = 1,
         wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
     }),
+    help = Entity:new({
+        text = 'Use z, x and arrow keys',
+        position = { x = 0, y = LOOT_ROOT_HEIGHT - 18 },
+        color = Utils.Colors.BLUE_GRAY,
+        wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
+    })
 }
 
 function Title:draw()
     Scene.draw(self)
-    for _, entity in ipairs(self.entities) do
+    for _, entity in pairs(self.entities) do
         BaseSystem.renderText(entity)
         BaseSystem.renderButtons(entity)
+    end
+end
+
+-- Callback function triggered when a key is pressed.
+---@param key love.KeyConstant Character of the pressed key.
+---@param scancode love.Scancode The scancode representing the pressed key.
+---@param isrepeat boolean Whether this keypress event is a repeat. The delay between key repeats depends on the user's system settings.
+function Title:keypressed(key, scancode, isrepeat)
+    if key == 'up' then
+        self.entities.buttons.value = math.max(1, self.entities.buttons.value - 1)
+    elseif key == 'down' then
+        self.entities.buttons.value = math.min(#self.entities.buttons.labels, self.entities.buttons.value + 1)
     end
 end
 
