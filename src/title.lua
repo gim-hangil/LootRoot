@@ -15,21 +15,9 @@ Title.entities = {
         wrap = { limit = LOOT_ROOT_WIDTH / 2, align = 'left' },
     }),
     Entity:new({
-        text = 'Start',
+        labels = { 'Start', 'How to', 'Credits' },
         position = { x = 0, y = 64 },
-        color = Utils.Colors.BLUE_GRAY,
-        wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
-    }),
-    Entity:new({
-        text = 'How to',
-        position = { x = 0, y = 80 },
-        color = Utils.Colors.BLUE_GRAY,
-        wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
-    }),
-    Entity:new({
-        text = 'Credit',
-        position = { x = 0, y = 96 },
-        color = Utils.Colors.BLUE_GRAY,
+        value = 1,
         wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
     }),
 }
@@ -38,6 +26,7 @@ function Title:draw()
     Scene.draw(self)
     for _, entity in ipairs(self.entities) do
         BaseSystem.renderText(entity)
+        BaseSystem.renderButtons(entity)
     end
 end
 
