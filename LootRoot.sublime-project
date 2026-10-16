@@ -22,4 +22,12 @@
             },
         },
     },
+    "build_systems": [
+        {
+            "name": "LÖVE",
+            "osx": {
+                "cmd": ["/Applications/love.app/Contents/MacOS/love", "${project_path}"],
+            },
+        },
+    ],
 }
