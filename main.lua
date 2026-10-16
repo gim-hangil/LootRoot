@@ -15,6 +15,6 @@ end
 
 function love.draw()
     love.graphics.scale(LOOT_ROOT_SCALE)
-    love.graphics.clear(Utils.Colors.BLUE_GRAY)
+    love.graphics.clear(Utils.Colors.DARK_BROWN)
     Title:draw()
 end
