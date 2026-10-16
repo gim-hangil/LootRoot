@@ -25,7 +25,7 @@ Title.entities = {
         position = { x = 0, y = LOOT_ROOT_HEIGHT - 18 },
         color = Utils.Colors.BLUE_GRAY,
         wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
-    })
+    }),
 }
 
 function Title:draw()
@@ -41,10 +41,16 @@ end
 ---@param scancode love.Scancode The scancode representing the pressed key.
 ---@param isrepeat boolean Whether this keypress event is a repeat. The delay between key repeats depends on the user's system settings.
 function Title:keypressed(key, scancode, isrepeat)
-    if key == 'up' then
+    if scancode == 'up' then
         self.entities.buttons.value = math.max(1, self.entities.buttons.value - 1)
-    elseif key == 'down' then
+    elseif scancode == 'down' then
         self.entities.buttons.value = math.min(#self.entities.buttons.labels, self.entities.buttons.value + 1)
+    elseif scancode == 'z' then
+        if self.entities.buttons.value == 1 then
+        elseif self.entities.buttons.value == 2 then
+        elseif self.entities.buttons.value == 3 then
+            self.next_scene = Credits
+        end
     end
 end
 

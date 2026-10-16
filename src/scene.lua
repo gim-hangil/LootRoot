@@ -1,6 +1,7 @@
 -- Scene base class
 ---@class Scene
 ---@field entities Entity[]
+---@field next_scene Scene
 local Scene = {}
 
 function Scene:new()
@@ -8,6 +9,7 @@ function Scene:new()
         entities = {},
     }, { __index = Scene })
     instance.__index = self
+    instance.next_scene = instance
     return instance
 end
 

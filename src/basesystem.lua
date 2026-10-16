@@ -50,8 +50,18 @@ local renderButtons = System(
     end
 )
 
+---@type fun(entity: Entity, dx: number, dy: number, dt: number): nil
+local rollingCredits = System(
+    { 'position' },
+    function (position, dx, dy, dt)
+        position.x = position.x + dx * dt
+        position.y = position.y + dy * dt
+    end
+)
+
 return {
     drawSprite = drawSprite,
     renderText = renderText,
     renderButtons = renderButtons,
+    rollingCredits = rollingCredits,
 }
