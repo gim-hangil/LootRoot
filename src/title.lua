@@ -1,32 +1,38 @@
 ---@class Title: Scene
 local Title = Scene:new()
-Title.entities = {
-    title_loot = Entity:new({
-        text = 'Loot',
-        font = love.graphics.newFont('assets/More 15.ttf', 32),
-        position = { x = 0, y = 16 },
-        color = Utils.Colors.RED,
-        wrap = { limit = LOOT_ROOT_WIDTH / 2, align = 'right' },
-    }),
-    title_root = Entity:new({
-        text = 'Root',
-        font = love.graphics.newFont('assets/More 15.ttf', 32),
-        position = { x = LOOT_ROOT_WIDTH / 2, y = 16 },
-        wrap = { limit = LOOT_ROOT_WIDTH / 2, align = 'left' },
-    }),
-    buttons = Entity:new({
-        labels = { 'Start', 'How to', 'Credits' },
-        position = { x = 0, y = 56 },
-        value = 1,
-        wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
-    }),
-    help = Entity:new({
-        text = 'Use z, x and arrow keys',
-        position = { x = 0, y = LOOT_ROOT_HEIGHT - 18 },
-        color = Utils.Colors.BLUE_GRAY,
-        wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
-    }),
-}
+
+function Title:new()
+    local instance = setmetatable({
+        entities = {
+            title_loot = Entity:new({
+                text = 'Loot',
+                font = love.graphics.newFont('assets/More 15.ttf', 32),
+                position = { x = 0, y = 16 },
+                color = Utils.Colors.RED,
+                wrap = { limit = LOOT_ROOT_WIDTH / 2, align = 'right' },
+            }),
+            title_root = Entity:new({
+                text = 'Root',
+                font = love.graphics.newFont('assets/More 15.ttf', 32),
+                position = { x = LOOT_ROOT_WIDTH / 2, y = 16 },
+                wrap = { limit = LOOT_ROOT_WIDTH / 2, align = 'left' },
+            }),
+            buttons = Entity:new({
+                labels = { 'Start', 'How to', 'Credits' },
+                position = { x = 0, y = 56 },
+                value = 1,
+                wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
+            }),
+            help = Entity:new({
+                text = 'Use z, x and arrow keys',
+                position = { x = 0, y = LOOT_ROOT_HEIGHT - 18 },
+                color = Utils.Colors.BLUE_GRAY,
+                wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
+            }),
+        },
+    }, { __index = Title })
+    return instance
+end
 
 function Title:draw()
     Scene.draw(self)
@@ -49,7 +55,7 @@ function Title:keypressed(key, scancode, isrepeat)
         if self.entities.buttons.value == 1 then
         elseif self.entities.buttons.value == 2 then
         elseif self.entities.buttons.value == 3 then
-            self.next_scene = Credits
+            CurrentScene = Credits:new()
         end
     end
 end

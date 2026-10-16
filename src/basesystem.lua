@@ -50,12 +50,11 @@ local renderButtons = System(
     end
 )
 
----@type fun(entity: Entity, dx: number, dy: number, dt: number): nil
+---@type fun(entity: Entity, dt: number): nil
 local rollingCredits = System(
     { 'position' },
-    function (position, dx, dy, dt)
-        position.x = position.x + dx * dt
-        position.y = position.y + dy * dt
+    function (position, dt)
+        position.y = position.y - 16 * dt
     end
 )
 

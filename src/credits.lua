@@ -1,41 +1,44 @@
 ---@class Credits: Scene
+---@field private _credits { text: string, author: string }[]
 local Credits = Scene:new()
-Credits.entities = {
-    Entity:new({
-        text = 'Credits',
-        font = love.graphics.newFont('assets/More 15.ttf', 32),
-        position = { x = 0, y = 16 },
-        wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
-    }),
-    Entity:new({
-        text = 'Game by Gim, Hangil',
-        position = { x = 8, y = 64 },
-        color = Utils.Colors.LIGHT_GRAY,
-        wrap = { limit = LOOT_ROOT_WIDTH - 16, align = 'left' },
-    }),
-    Entity:new({
-        text = 'Font "More" by somepx',
-        position = { x = 8, y = 96 },
-        color = Utils.Colors.LIGHT_GRAY,
-        wrap = { limit = LOOT_ROOT_WIDTH - 16, align = 'left' },
-    }),
-    Entity:new({
-        text = 'Font "Yesterday" by somepx',
-        position = { x = 8, y = 128 },
-        color = Utils.Colors.LIGHT_GRAY,
-        wrap = { limit = LOOT_ROOT_WIDTH - 16, align = 'left' },
-    }),
-    Entity:new({
-        text = 'Palette "endesga 16" by endesga',
-        position = { x = 8, y = 160 },
-        color = Utils.Colors.LIGHT_GRAY,
-        wrap = { limit = LOOT_ROOT_WIDTH - 16, align = 'left' },
-    }),
+Credits._credits = {
+    { text = 'Game "LootRoot"', author = 'by Gim, Hangil' },
+    { text = 'Font "More"', author = 'by somepx' },
+    { text = 'Font "Yesterday"', author = 'by somepx' },
+    { text = 'Palette "endesga 16"', author = 'by endesga' },
 }
+
+function Credits:new()
+    local instance = setmetatable({
+        entities = {
+            Entity:new({
+                text = 'Credits',
+                font = love.graphics.newFont('assets/More 15.ttf', 32),
+                position = { x = 0, y = 16 },
+                wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
+            }),
+        }
+    }, { __index = Credits })
+    for i, credit in ipairs(self._credits) do
+        instance:addEntity(Entity:new({
+            text = credit.text,
+            position = { x = 8, y = 16 + i * 48 },
+            color = Utils.Colors.LIGHT_GRAY,
+            wrap = { limit = LOOT_ROOT_WIDTH - 16, align = 'left' },
+        }))
+        instance:addEntity(Entity:new({
+            text = credit.author,
+            position = { x = 8, y = 32 + i * 48 },
+            color = Utils.Colors.BLUE_GRAY,
+            wrap = { limit = LOOT_ROOT_WIDTH - 16, align = 'right' },
+        }))
+    end
+    return instance
+end
 
 function Credits:update(dt)
     for _, entity in pairs(self.entities) do
-        BaseSystem.rollingCredits(entity, 0, -16, dt)
+        BaseSystem.rollingCredits(entity, dt)
     end
     if self.entities[#self.entities].position.y < -32 then
         local total_dy = LOOT_ROOT_HEIGHT - self.entities[1].position.y
@@ -53,7 +56,7 @@ end
 
 function Credits:keypressed(key, scancode, isrepeat)
     if scancode == 'z' and not isrepeat then
-        self.next_scene = Title
+        CurrentScene = Title:new()
     end
 end
 

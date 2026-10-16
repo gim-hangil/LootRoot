@@ -18,6 +18,10 @@
                     [
                         "${3rd}/love2d/library"
                     ],
+                    "Lua.diagnostics.disable":
+                    [
+						"undefined-field"
+					],
                 },
             },
         },

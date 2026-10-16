@@ -1,15 +1,12 @@
 -- Scene base class
 ---@class Scene
 ---@field entities Entity[]
----@field next_scene Scene
 local Scene = {}
 
 function Scene:new()
     local instance = setmetatable({
         entities = {},
     }, { __index = Scene })
-    instance.__index = self
-    instance.next_scene = instance
     return instance
 end
 
