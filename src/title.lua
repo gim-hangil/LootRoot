@@ -1,33 +1,31 @@
 ---@class Title: Scene
+---@field entities { title_loot: TextLabel, title_root: TextLabel, buttons: ButtonList, help: TextLabel }
 local Title = Scene:new()
 
 function Title:new()
     local instance = setmetatable({
         entities = {
-            title_loot = Entity:new({
+            title_loot = TextLabel:new({
                 text = 'Loot',
                 font = love.graphics.newFont('assets/More 15.ttf', 32),
                 position = { x = 0, y = 16 },
                 color = Utils.Colors.RED,
                 wrap = { limit = LOOT_ROOT_WIDTH / 2, align = 'right' },
             }),
-            title_root = Entity:new({
+            title_root = TextLabel:new({
                 text = 'Root',
                 font = love.graphics.newFont('assets/More 15.ttf', 32),
                 position = { x = LOOT_ROOT_WIDTH / 2, y = 16 },
                 wrap = { limit = LOOT_ROOT_WIDTH / 2, align = 'left' },
             }),
-            buttons = Entity:new({
+            buttons = ButtonList:new({
                 labels = { 'Start', 'How to', 'Credits' },
                 position = { x = 0, y = 56 },
-                value = 1,
-                wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
             }),
-            help = Entity:new({
-                text = 'Use z, x and arrow keys',
+            help = TextLabel:new({
+                text = 'Use z, x and arrow keys.',
                 position = { x = 0, y = LOOT_ROOT_HEIGHT - 18 },
                 color = Utils.Colors.BLUE_GRAY,
-                wrap = { limit = LOOT_ROOT_WIDTH, align = 'center' },
             }),
         },
     }, { __index = Title })

@@ -11,12 +11,8 @@ local drawSprite = System(
 local DEFAULT_FONT = love.graphics.newFont('assets/Yesterday 10.ttf', 16)
 
 local renderText = System(
-    { 'text', 'position', '?color', '?font', '?wrap' },
+    { 'text', 'position', 'color', 'font', 'wrap' },
     function(text, position, color, font, wrap)
-        color = color or Utils.Colors.WHITE
-        font = font or DEFAULT_FONT
-        wrap = wrap or { limit = 2 * LOOT_ROOT_WIDTH, align = 'left' }
-
         local current_color = { love.graphics.getColor() }
         love.graphics.setColor(color)
         love.graphics.setFont(font)
@@ -25,9 +21,6 @@ local renderText = System(
     end
 )
 
----@type love.Font Default font for drawing buttons.
-local DEFAULT_BUTTON_FONT = love.graphics.newFont('assets/Yesterday 10.ttf', 16)
-
 -- Render a list of buttons with highlight on the selected button.
 ---@type fun(entity: Entity): nil
 local renderButtons = System(
@@ -35,7 +28,7 @@ local renderButtons = System(
     function(labels, position, value, color, active_color, font, wrap)
         color = color or Utils.Colors.BLUE_GRAY
         active_color = active_color or Utils.Colors.LIGHT_GRAY
-        font = font or DEFAULT_BUTTON_FONT
+        font = font or DEFAULT_FONT
         wrap = wrap or { limit = 2 * LOOT_ROOT_WIDTH, align = 'left' }
 
         love.graphics.setFont(font)
@@ -63,4 +56,5 @@ return {
     renderText = renderText,
     renderButtons = renderButtons,
     rollingCredits = rollingCredits,
+    DEFAULT_FONT = DEFAULT_FONT,
 }

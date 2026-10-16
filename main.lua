@@ -8,6 +8,8 @@ function love.load()
     Entity = require("src.entity")
     Utils = require("src.utils")
     BaseSystem = require("src.basesystem")
+    TextLabel = require("src.textlabel")
+    ButtonList = require("src.buttonlist")
     Title = require("src.title")
     Credits = require("src.credits")
 
